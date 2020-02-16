@@ -38,10 +38,16 @@
                                 <state key="normal" title="Log In">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                                <connections>
+                                    <action selector="onLogin:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Nt9-dn-alf"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="x56-DH-BWf" userLabel="Sign Up Button">
                                 <rect key="frame" x="20" y="510" width="374" height="30"/>
                                 <state key="normal" title="Sign Up"/>
+                                <connections>
+                                    <action selector="onSignup:" destination="BYZ-38-t0r" eventType="touchUpInside" id="kiT-Cg-auc"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -65,6 +71,9 @@
                     </view>
                     <connections>
                         <outlet property="loginButton" destination="ipC-bc-UYe" id="0aM-j4-CGF"/>
+                        <outlet property="passwordField" destination="yMv-wf-YjG" id="NLR-Q8-qsy"/>
+                        <outlet property="usernameField" destination="oMP-yX-UkC" id="b0h-h3-jtn"/>
+                        <segue destination="BL8-xu-OVP" kind="presentation" identifier="loginSegue" modalPresentationStyle="fullScreen" id="zk9-JD-oFr"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
