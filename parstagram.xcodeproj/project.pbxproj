@@ -11,9 +11,11 @@
 		77774D3D5DC2F8115AD49A90 /* Pods_parstagram.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 23F8DE291B82C137E7D91649 /* Pods_parstagram.framework */; };
 		9D74FD5FF0476A84318F5498 /* Pods_parstagramTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A9425A9ED31FB6ADBBF9423 /* Pods_parstagramTests.framework */; };
 		D148796E23F8B56600570510 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = D148796D23F8B56600570510 /* Constants.swift */; };
+		D148797023F8B7CD00570510 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D148796F23F8B7CD00570510 /* LoginViewController.swift */; };
+		D148797223F8B7DC00570510 /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D148797123F8B7DC00570510 /* FeedViewController.swift */; };
+		D148797723F8C47F00570510 /* LaunchImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D148797623F8C47F00570510 /* LaunchImageView.swift */; };
 		D18E560423F8AADA0005F86A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D18E560323F8AADA0005F86A /* AppDelegate.swift */; };
 		D18E560623F8AADA0005F86A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D18E560523F8AADA0005F86A /* SceneDelegate.swift */; };
-		D18E560823F8AADA0005F86A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D18E560723F8AADA0005F86A /* ViewController.swift */; };
 		D18E560B23F8AADA0005F86A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D18E560923F8AADA0005F86A /* Main.storyboard */; };
 		D18E560D23F8AAE10005F86A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D18E560C23F8AAE10005F86A /* Assets.xcassets */; };
 		D18E561023F8AAE10005F86A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D18E560E23F8AAE10005F86A /* LaunchScreen.storyboard */; };
@@ -48,10 +50,12 @@
 		B3FF5BE411CC2183C967E27B /* Pods_parstagram_parstagramUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_parstagram_parstagramUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B57AB2E5E9A0B3AD4453EAF3 /* Pods-parstagramTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-parstagramTests.debug.xcconfig"; path = "Target Support Files/Pods-parstagramTests/Pods-parstagramTests.debug.xcconfig"; sourceTree = "<group>"; };
 		D148796D23F8B56600570510 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		D148796F23F8B7CD00570510 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		D148797123F8B7DC00570510 /* FeedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewController.swift; sourceTree = "<group>"; };
+		D148797623F8C47F00570510 /* LaunchImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchImageView.swift; sourceTree = "<group>"; };
 		D18E560023F8AADA0005F86A /* parstagram.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = parstagram.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D18E560323F8AADA0005F86A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D18E560523F8AADA0005F86A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		D18E560723F8AADA0005F86A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		D18E560A23F8AADA0005F86A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		D18E560C23F8AAE10005F86A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D18E560F23F8AAE10005F86A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -124,7 +128,8 @@
 		D148796A23F8B44D00570510 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				D18E560723F8AADA0005F86A /* ViewController.swift */,
+				D148796F23F8B7CD00570510 /* LoginViewController.swift */,
+				D148797123F8B7DC00570510 /* FeedViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -135,6 +140,14 @@
 				D148796D23F8B56600570510 /* Constants.swift */,
 			);
 			path = Modals;
+			sourceTree = "<group>";
+		};
+		D148797523F8C45500570510 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				D148797623F8C47F00570510 /* LaunchImageView.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		D18E55F723F8AADA0005F86A = {
@@ -162,10 +175,11 @@
 		D18E560223F8AADA0005F86A /* parstagram */ = {
 			isa = PBXGroup;
 			children = (
-				D148796C23F8B55900570510 /* Modals */,
-				D148796A23F8B44D00570510 /* ViewControllers */,
 				D148796923F8B44100570510 /* Delegates */,
+				D148796C23F8B55900570510 /* Modals */,
 				D148796823F8B43300570510 /* Storyboards */,
+				D148797523F8C45500570510 /* Views */,
+				D148796A23F8B44D00570510 /* ViewControllers */,
 				D18E560C23F8AAE10005F86A /* Assets.xcassets */,
 				D18E561123F8AAE10005F86A /* Info.plist */,
 			);
@@ -442,8 +456,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D18E560823F8AADA0005F86A /* ViewController.swift in Sources */,
+				D148797023F8B7CD00570510 /* LoginViewController.swift in Sources */,
 				D18E560423F8AADA0005F86A /* AppDelegate.swift in Sources */,
+				D148797223F8B7DC00570510 /* FeedViewController.swift in Sources */,
+				D148797723F8C47F00570510 /* LaunchImageView.swift in Sources */,
 				D18E560623F8AADA0005F86A /* SceneDelegate.swift in Sources */,
 				D148796E23F8B56600570510 /* Constants.swift in Sources */,
 			);
