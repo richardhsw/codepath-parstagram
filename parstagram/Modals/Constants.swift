@@ -19,9 +19,12 @@ enum Segues : String {
 
 enum Errors : String {
     case generalTitle = "Error"
-    case emptyUPMessage = "Username and password field cannot be empty"
+    case emptyUPMessage = "Username and password cannot be empty"
     case loginTitle = "Login Error"
     case loginMessage = "Oops! Something went wrong while logging in:\n"
     case signupTitle = "Sign up error"
     case signupMessage = "Oops! Something went wrong while signing up:\n"
+    case emptyCaptionMessage = "Caption cannot be empty"
+    case shareTitle = "Sharing Error"
+    case shareMessage = "Oops! Something went wrong while sharing your post:\n"
 }

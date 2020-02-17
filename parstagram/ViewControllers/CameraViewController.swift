@@ -6,8 +6,10 @@
 //  Copyright © 2020 Richard Hsu. All rights reserved.
 //
 
-import UIKit
 import AlamofireImage
+import Parse
+import UIKit
+
 
 class CameraViewController: UIViewController, UITextFieldDelegate,  UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
@@ -38,6 +40,31 @@ class CameraViewController: UIViewController, UITextFieldDelegate,  UIImagePicke
     
     // MARK: - Action Functions
     @IBAction func onShare(_ sender: Any) {
+        // TODO: check imageView is empty
+        if (!captionField.text!.isEmpty) {
+            let post = PFObject(className: "Posts")
+            
+            post["author"]  = PFUser.current()!
+            post["caption"] = captionField.text
+            
+            // save image
+            let imageData = photoImageView.image!.pngData()
+            let file      = PFFileObject(data: imageData!)
+            post["image"] = file
+            
+            post.saveInBackground { (success, error) in
+                if success {
+                    print("Post successfully shared!")
+                    self.navigationController?.popViewController(animated: true)
+                }
+                else {
+                    print("Error sharing post")
+                }
+            }
+        }
+        else {
+            displayError()
+        }
     }
     
     @IBAction func onCameraCapture(_ sender: Any) {
@@ -67,5 +94,28 @@ class CameraViewController: UIViewController, UITextFieldDelegate,  UIImagePicke
         photoImageView.image = scaledImage
         
         dismiss(animated: true, completion: nil)
+    }
+    
+    
+    // MARK: - Error Functions
+    // Text fields are empty alert controller
+    func displayError() {
+        let alertController = UIAlertController(title: Errors.generalTitle.rawValue, message: Errors.emptyCaptionMessage.rawValue, preferredStyle: .alert)
+        // create an OK action
+        let OKAction = UIAlertAction(title: "OK", style: .default)
+        // add the OK action to the alert controller
+        alertController.addAction(OKAction)
+        present(alertController, animated: true)
+    }
+    
+    // Login error alert controller
+    func displayLoginError(error: Error) {
+        let message = Errors.shareMessage.rawValue + "\(error.localizedDescription)"
+        let alertController = UIAlertController(title: Errors.shareTitle.rawValue, message: message, preferredStyle: .alert)
+        // create an OK action
+        let OKAction = UIAlertAction(title: "OK", style: .default)
+        // add the OK action to the alert controller
+        alertController.addAction(OKAction)
+        present(alertController, animated: true)
     }
 }
