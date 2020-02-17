@@ -9,7 +9,7 @@
 import UIKit
 import AlamofireImage
 
-class CameraViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class CameraViewController: UIViewController, UITextFieldDelegate,  UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     // MARK: - Variables
     @IBOutlet weak var photoImageView: UIImageView!
@@ -19,11 +19,25 @@ class CameraViewController: UIViewController, UIImagePickerControllerDelegate, U
     // MARK: - Init Functions
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        captionField.delegate = self
+    }
+    
+    
+    // MARK: UI Customization Functions
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        
+        if textField == captionField {
+            view.endEditing(true)
+        }
+        
+        return true
     }
     
     
     // MARK: - Action Functions
-    @IBAction func onSubmit(_ sender: Any) {
+    @IBAction func onShare(_ sender: Any) {
     }
     
     @IBAction func onCameraCapture(_ sender: Any) {
