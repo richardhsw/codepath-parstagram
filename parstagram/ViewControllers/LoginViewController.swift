@@ -9,7 +9,7 @@
 import UIKit
 import Parse
 
-class LoginViewController: UIViewController {
+class LoginViewController: UIViewController, UITextFieldDelegate {
     
     // MARK: - Variables
     @IBOutlet weak var usernameField: UITextField!
@@ -21,6 +21,9 @@ class LoginViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        usernameField.delegate = self
+        passwordField.delegate = self
+        
         customizeButton()
     }
     
@@ -28,6 +31,19 @@ class LoginViewController: UIViewController {
     // MARK: - UI Customization Functions
     func customizeButton() {
         loginButton.layer.cornerRadius = 5
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        
+        if textField == usernameField {
+            passwordField.becomeFirstResponder()
+        }
+        else if textField == passwordField {
+            onLogin(self)
+        }
+        
+        return true
     }
     
     
