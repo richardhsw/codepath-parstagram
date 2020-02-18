@@ -42,15 +42,15 @@ class CameraViewController: UIViewController, UITextFieldDelegate,  UIImagePicke
     @IBAction func onShare(_ sender: Any) {
         // TODO: check imageView is empty
         if (!captionField.text!.isEmpty) {
-            let post = PFObject(className: "Posts")
+            let post = PFObject(className: PostsDB.name.rawValue)
             
-            post["author"]  = PFUser.current()!
-            post["caption"] = captionField.text
+            post[PostsDB.author.rawValue]  = PFUser.current()!
+            post[PostsDB.caption.rawValue] = captionField.text
             
             // save image
             let imageData = photoImageView.image!.pngData()
             let file      = PFFileObject(data: imageData!)
-            post["image"] = file
+            post[PostsDB.image.rawValue] = file
             
             post.saveInBackground { (success, error) in
                 if success {

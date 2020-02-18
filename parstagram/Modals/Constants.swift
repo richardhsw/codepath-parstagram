@@ -17,6 +17,10 @@ enum Segues : String {
     case login = "loginSegue"
 }
 
+enum TableViewIdentifiers : String {
+    case post = "PostTableViewCell"
+}
+
 enum Errors : String {
     case generalTitle = "Error"
     case emptyUPMessage = "Username and password cannot be empty"
@@ -27,4 +31,11 @@ enum Errors : String {
     case emptyCaptionMessage = "Caption cannot be empty"
     case shareTitle = "Sharing Error"
     case shareMessage = "Oops! Something went wrong while sharing your post:\n"
+}
+
+enum PostsDB : String {
+    case name = "Posts"
+    case author
+    case caption
+    case image
 }

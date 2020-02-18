@@ -22,6 +22,7 @@
 		D18E561B23F8AAE10005F86A /* parstagramTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D18E561A23F8AAE10005F86A /* parstagramTests.swift */; };
 		D18E562623F8AAE10005F86A /* parstagramUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D18E562523F8AAE10005F86A /* parstagramUITests.swift */; };
 		D1B186DF23FB35F40033C6D0 /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1B186DE23FB35F30033C6D0 /* CameraViewController.swift */; };
+		D1B186E123FB56AA0033C6D0 /* PostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1B186E023FB56AA0033C6D0 /* PostTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -68,6 +69,7 @@
 		D18E562523F8AAE10005F86A /* parstagramUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = parstagramUITests.swift; sourceTree = "<group>"; };
 		D18E562723F8AAE10005F86A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D1B186DE23FB35F30033C6D0 /* CameraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
+		D1B186E023FB56AA0033C6D0 /* PostTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTableViewCell.swift; sourceTree = "<group>"; };
 		E36F752B1722E49A5261E5C5 /* Pods-parstagram-parstagramUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-parstagram-parstagramUITests.debug.xcconfig"; path = "Target Support Files/Pods-parstagram-parstagramUITests/Pods-parstagram-parstagramUITests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -149,6 +151,7 @@
 			isa = PBXGroup;
 			children = (
 				D148797623F8C47F00570510 /* LaunchImageView.swift */,
+				D1B186E023FB56AA0033C6D0 /* PostTableViewCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -462,6 +465,7 @@
 				D148797023F8B7CD00570510 /* LoginViewController.swift in Sources */,
 				D18E560423F8AADA0005F86A /* AppDelegate.swift in Sources */,
 				D148797223F8B7DC00570510 /* FeedViewController.swift in Sources */,
+				D1B186E123FB56AA0033C6D0 /* PostTableViewCell.swift in Sources */,
 				D148797723F8C47F00570510 /* LaunchImageView.swift in Sources */,
 				D1B186DF23FB35F40033C6D0 /* CameraViewController.swift in Sources */,
 				D18E560623F8AADA0005F86A /* SceneDelegate.swift in Sources */,
