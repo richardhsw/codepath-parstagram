@@ -15,20 +15,17 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="Icon-60" translatesAutoresizingMaskIntoConstraints="NO" id="aDi-hA-fjb" userLabel="Icon Image View">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="Icon-60" translatesAutoresizingMaskIntoConstraints="NO" id="Khb-tS-Bge" userLabel="Logo">
                                 <rect key="frame" x="177" y="418" width="60" height="60"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="aDi-hA-fjb" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="Fwj-Eq-OID"/>
-                            <constraint firstItem="aDi-hA-fjb" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="qXn-ir-A6C"/>
+                            <constraint firstItem="Khb-tS-Bge" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="Gws-HK-xk8"/>
+                            <constraint firstItem="Khb-tS-Bge" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="NJV-NJ-Tte"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
-                    <connections>
-                        <outlet property="iconIV" destination="aDi-hA-fjb" id="W3d-1o-dV9"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

@@ -1,4 +1,4 @@
-framework module Parse {
+module Parse {
   umbrella header "Parse-umbrella.h"
 
   export *

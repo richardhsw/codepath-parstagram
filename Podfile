@@ -3,11 +3,14 @@
 
 target 'parstagram' do
   # Comment the next line if you don't want to use dynamic frameworks
-  use_frameworks!
+  # use_frameworks!
+  use_modular_headers!
 
   # Pods for parstagram
-  pod "Parse"
+  pod "Alamofire"
   pod "AlamofireImage"
+  pod "CameraManager", "~> 4.4"
+  pod "Parse"
 
   target 'parstagramTests' do
     inherit! :search_paths

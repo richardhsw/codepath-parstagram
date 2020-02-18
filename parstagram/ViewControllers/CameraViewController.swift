@@ -74,6 +74,7 @@ class CameraViewController: UIViewController, UITextFieldDelegate,  UIImagePicke
         
         if UIImagePickerController.isSourceTypeAvailable(.camera) {
             picker.sourceType = .camera
+//            performSegue(withIdentifier: Segues.camera.rawValue, sender: nil)
         }
         else {
             picker.sourceType = .photoLibrary

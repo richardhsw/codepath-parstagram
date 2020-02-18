@@ -34,6 +34,7 @@ enum PostsDB : String {
 
 enum Segues : String {
     case login = "loginSegue"
+    case camera = "showCamera"
 }
 
 enum TableViewIdentifiers : String {
