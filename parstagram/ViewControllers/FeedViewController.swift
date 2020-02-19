@@ -27,14 +27,16 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
     // MARK: - Init Function
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Set up tableview
         tableView.dataSource = self
         tableView.delegate   = self
         tableView.allowsSelection = false
         
+        /***----- Unused Header Code
         let headNib = UINib.init(nibName: TableViewIdentifiers.header.rawValue, bundle: Bundle.main)
         tableView.register(headNib, forHeaderFooterViewReuseIdentifier: TableViewIdentifiers.header.rawValue)
+        ***/
         
         // Set up refresh control
         refreshControl = UIRefreshControl()
@@ -50,6 +52,7 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     
     // MARK: - TableView FUnctions
+    /***----- Unused Header Code -----
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 100
     }
@@ -59,6 +62,7 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
         header.usernameLabel.text = "richard"
         return header
     }
+    ***/
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return posts.count
@@ -82,6 +86,11 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
         let urlString = imageFire.url!
         let url       = URL(string: urlString)!
         cell.photoImageView.af_setImage(withURL: url)
+        
+        // Get time ago
+        print(post.createdAt)
+        print(post.createdAt?.getElapsedInterval())
+        cell.timestampLabel.text = post.createdAt?.getElapsedInterval()
         
         return cell
     }

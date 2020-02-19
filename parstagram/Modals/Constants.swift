@@ -20,6 +20,10 @@ enum Errors : String {
     case shareMessage = "Oops! Something went wrong while sharing your post:\n"
 }
 
+enum FormatStrings : String {
+    case date = "dd MM yyyy at HH:mm:ss Z"
+}
+
 enum HerokuServer : String {
     case appID     = "parstagram"
     case serverURL = "https://rocky-shore-36635.herokuapp.com/parse"
