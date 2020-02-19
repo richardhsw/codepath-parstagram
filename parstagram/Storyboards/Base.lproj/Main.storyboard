@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
-    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <device id="retina6_1" orientation="portrait" appearance="dark"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -201,13 +202,13 @@
                     <navigationItem key="navigationItem" title="Parstagram" id="pwF-k3-LcB">
                         <barButtonItem key="backBarButtonItem" title=" " id="bs2-2t-HxJ"/>
                         <barButtonItem key="leftBarButtonItem" title="Logout" id="C0E-f0-xsN" userLabel="Logout Button">
-                            <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <color key="tintColor" name="BarButtons"/>
                             <connections>
                                 <action selector="onLogout:" destination="fWf-a2-A0a" id="P8e-1H-zqQ"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" image="insta_camera_btn" id="NRs-oD-3GE">
-                            <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <color key="tintColor" name="BarButtons"/>
                             <connections>
                                 <segue destination="MIG-fK-QHc" kind="show" id="4Lt-Qb-iu1"/>
                             </connections>
@@ -334,7 +335,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <color key="selectedImageTintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="selectedImageTintColor" name="BarButtons"/>
                     </tabBar>
                     <connections>
                         <segue destination="eYA-DT-O6R" kind="relationship" relationship="viewControllers" id="JOK-Qg-Kli"/>
@@ -349,18 +350,14 @@
         <scene sceneID="ujD-Md-XHY">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="eYA-DT-O6R" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="" image="feed_tab" id="0MX-B4-Fz0"/>
+                    <tabBarItem key="tabBarItem" title="" image="feed_tab" id="0MX-B4-Fz0">
+                        <color key="badgeColor" name="BarButtons"/>
+                    </tabBarItem>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="lhU-bn-fpz">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <textAttributes key="titleTextAttributes">
-                            <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        </textAttributes>
-                        <textAttributes key="largeTitleTextAttributes">
-                            <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        </textAttributes>
+                        <color key="tintColor" name="BarButtons"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -380,5 +377,8 @@
         <image name="insta_camera_btn" width="25" height="25"/>
         <image name="instagram_logo" width="255" height="108"/>
         <image name="profile_tab" width="25" height="25"/>
+        <namedColor name="BarButtons">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </namedColor>
     </resources>
 </document>

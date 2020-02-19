@@ -7,6 +7,7 @@
 //
 
 import AlamofireImage
+import MBProgressHUD
 import Parse
 import UIKit
 
@@ -42,6 +43,8 @@ class CameraViewController: UIViewController, UITextFieldDelegate,  UIImagePicke
     @IBAction func onShare(_ sender: Any) {
         // TODO: check imageView is empty
         if (!captionField.text!.isEmpty) {
+            MBProgressHUD.showAdded(to: self.view, animated: true)
+            
             let post = PFObject(className: PostsDB.name.rawValue)
             
             post[PostsDB.author.rawValue]  = PFUser.current()!
@@ -61,6 +64,8 @@ class CameraViewController: UIViewController, UITextFieldDelegate,  UIImagePicke
                     print("Error sharing post")
                 }
             }
+            
+            MBProgressHUD.hide(for: self.view, animated: true)
         }
         else {
             displayError()

@@ -5,11 +5,13 @@ target 'parstagram' do
   # Comment the next line if you don't want to use dynamic frameworks
   # use_frameworks!
   use_modular_headers!
+  inhibit_all_warnings!
 
   # Pods for parstagram
   pod "Alamofire"
   pod "AlamofireImage"
   pod "CameraManager", "~> 4.4"
+  pod "MBProgressHUD"
   pod "Parse"
 
   target 'parstagramTests' do

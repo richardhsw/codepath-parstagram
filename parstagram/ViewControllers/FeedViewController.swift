@@ -8,6 +8,7 @@
 
 import Alamofire
 import AlamofireImage
+import MBProgressHUD
 import Parse
 import UIKit
 
@@ -88,8 +89,6 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
         cell.photoImageView.af_setImage(withURL: url)
         
         // Get time ago
-        print(post.createdAt)
-        print(post.createdAt?.getElapsedInterval())
         cell.timestampLabel.text = post.createdAt?.getElapsedInterval()
         
         return cell
@@ -126,6 +125,8 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
         query.includeKey(PostsDB.author.rawValue)
         query.limit = numPosts
         
+        MBProgressHUD.showAdded(to: self.view, animated: true)
+        
         query.findObjectsInBackground { (posts, error) in
             if posts != nil {
                 // If we reached the end of the posts, stop infinite scrolling
@@ -143,5 +144,7 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
                 print("error")
             }
         }
+
+        MBProgressHUD.hide(for: self.view, animated: true)
     }
 }
