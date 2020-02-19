@@ -127,6 +127,10 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
+    @IBAction func onTap(_ sender: Any) {
+        usernameField.endEditing(true)
+        passwordField.endEditing(true)
+    }
     
     // MARK: - Helper Functions
     func login(with username: String, and password: String) {

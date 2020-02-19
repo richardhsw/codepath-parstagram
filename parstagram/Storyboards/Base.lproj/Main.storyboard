@@ -53,6 +53,7 @@
                             </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="yMv-wf-YjG" firstAttribute="top" secondItem="oMP-yX-UkC" secondAttribute="bottom" constant="20" id="9GZ-rg-c9t"/>
                             <constraint firstItem="oMP-yX-UkC" firstAttribute="top" secondItem="iqn-jh-0iQ" secondAttribute="bottom" constant="40" id="Ah4-aq-xNu"/>
@@ -70,6 +71,9 @@
                             <constraint firstItem="x56-DH-BWf" firstAttribute="trailing" secondItem="ipC-bc-UYe" secondAttribute="trailing" id="zWf-Fi-aLr"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="oSg-G4-J2i" appends="YES" id="xmG-ql-LMH"/>
+                        </connections>
                     </view>
                     <connections>
                         <outlet property="loginButton" destination="ipC-bc-UYe" id="0aM-j4-CGF"/>
@@ -79,6 +83,11 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="oSg-G4-J2i">
+                    <connections>
+                        <action selector="onTap:" destination="BYZ-38-t0r" id="qR7-gJ-gLn"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="137.68115942028987" y="97.767857142857139"/>
         </scene>
