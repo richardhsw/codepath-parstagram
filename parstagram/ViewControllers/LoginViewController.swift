@@ -118,7 +118,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             
             user.signUpInBackground { (success, error) in
                 if success {
-                    self.performSegue(withIdentifier: Segues.login.rawValue, sender: nil)
+                    self.login(with: user.username!, and: user.password!)
                 }
                 else {
                     self.displaySignupError(error: error!)

@@ -18,6 +18,10 @@ enum Errors : String {
     case emptyCaptionMessage = "Caption cannot be empty"
     case shareTitle = "Sharing Error"
     case shareMessage = "Oops! Something went wrong while sharing your post:\n"
+    case queryTitle = "Server Error"
+    case queryMessage = "Oops! Something went wrong while retrieving posts:\n"
+    case profileTitle = "Updating Profile Error"
+    case profileMessage = "Oops! Something went wrong while uploading your new profile picture:\n"
 }
 
 enum FormatStrings : String {
@@ -34,6 +38,7 @@ enum PostsDB : String {
     case author
     case caption
     case image
+    case createdAt
 }
 
 enum Segues : String {
@@ -41,9 +46,16 @@ enum Segues : String {
     case camera = "showCamera"
 }
 
-enum TableViewIdentifiers : String {
-    case post = "PostTableViewCell"
-    case header = "PostTableViewHeader"
+enum ReuseIdentifiers : String {
+    case feedTable = "PostTableViewCell"
+    case feedHeader = "PostTableViewHeader"
+    case profileCollection = "PostCollectionViewCell"
+}
+
+enum UsersDB : String {
+    case username
+    case password
+    case profileImage
 }
 
 enum UserDefaultsKeys : String {

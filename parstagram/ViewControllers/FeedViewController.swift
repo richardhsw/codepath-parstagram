@@ -70,7 +70,7 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: TableViewIdentifiers.post.rawValue) as! PostTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: ReuseIdentifiers.feedTable.rawValue) as! PostTableViewCell
         let post = posts[indexPath.row]
         
         // Get username
@@ -112,6 +112,7 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
     // MARK: - Action Functions
     @IBAction func onLogout(_ sender: Any) {
         UserDefaults.standard.set(false, forKey: UserDefaultsKeys.isLoggedIn.rawValue)
+        PFUser.logOut()
         dismiss(animated: true, completion: nil)
     }
     
@@ -120,12 +121,12 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
     func queryPosts(for numPosts : Int) {
         isLoadingData = true
         
+        MBProgressHUD.showAdded(to: self.view, animated: true)
+        
         let query = PFQuery(className:PostsDB.name.rawValue)
-        query.addDescendingOrder("createdAt")
+        query.addDescendingOrder(PostsDB.createdAt.rawValue)
         query.includeKey(PostsDB.author.rawValue)
         query.limit = numPosts
-        
-        MBProgressHUD.showAdded(to: self.view, animated: true)
         
         query.findObjectsInBackground { (posts, error) in
             if posts != nil {
@@ -141,10 +142,21 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
                 }
             }
             else {
-                print("error")
+                print("Error while retreiving posts")
+                self.displayShareError(error: error!)
             }
         }
 
         MBProgressHUD.hide(for: self.view, animated: true)
+    }
+    
+    func displayShareError(error: Error) {
+        let message = Errors.queryMessage.rawValue + "\(error.localizedDescription)"
+        let alertController = UIAlertController(title: Errors.queryMessage.rawValue, message: message, preferredStyle: .alert)
+        // create an OK action
+        let OKAction = UIAlertAction(title: "OK", style: .default)
+        // add the OK action to the alert controller
+        alertController.addAction(OKAction)
+        present(alertController, animated: true)
     }
 }

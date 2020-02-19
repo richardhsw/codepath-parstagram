@@ -62,6 +62,7 @@ class CameraViewController: UIViewController, UITextFieldDelegate,  UIImagePicke
                 }
                 else {
                     print("Error sharing post")
+                    self.displayShareError(error: error!)
                 }
             }
             
@@ -114,8 +115,8 @@ class CameraViewController: UIViewController, UITextFieldDelegate,  UIImagePicke
         present(alertController, animated: true)
     }
     
-    // Login error alert controller
-    func displayLoginError(error: Error) {
+    // Share error alert controller
+    func displayShareError(error: Error) {
         let message = Errors.shareMessage.rawValue + "\(error.localizedDescription)"
         let alertController = UIAlertController(title: Errors.shareTitle.rawValue, message: message, preferredStyle: .alert)
         // create an OK action

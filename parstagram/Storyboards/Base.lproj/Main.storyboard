@@ -5,6 +5,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -41,7 +42,6 @@
                                 </state>
                                 <connections>
                                     <action selector="onLogin:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Nt9-dn-alf"/>
-                                    <segue destination="XnV-bm-E14" kind="presentation" identifier="loginSegue" modalPresentationStyle="fullScreen" id="Q5c-Wd-1Of"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="x56-DH-BWf" userLabel="Sign Up Button">
@@ -75,27 +75,128 @@
                         <outlet property="loginButton" destination="ipC-bc-UYe" id="0aM-j4-CGF"/>
                         <outlet property="passwordField" destination="yMv-wf-YjG" id="NLR-Q8-qsy"/>
                         <outlet property="usernameField" destination="oMP-yX-UkC" id="Ybk-ii-tHe"/>
+                        <segue destination="XnV-bm-E14" kind="presentation" identifier="loginSegue" modalPresentationStyle="fullScreen" id="xpp-cL-2dT"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="137.68115942028987" y="97.767857142857139"/>
         </scene>
-        <!--View Controller-->
+        <!--Profile View Controller-->
         <scene sceneID="TMN-hT-zi6">
             <objects>
-                <viewController id="VqO-2o-zOM" sceneMemberID="viewController">
+                <viewController id="VqO-2o-zOM" customClass="ProfileViewController" customModule="parstagram" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="rIZ-WO-4JE">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="default_profile" translatesAutoresizingMaskIntoConstraints="NO" id="aFk-p1-dPJ" userLabel="Profile Image View">
+                                <rect key="frame" x="20" y="64" width="96" height="96"/>
+                                <gestureRecognizers/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="96" id="LXW-PP-pCg"/>
+                                    <constraint firstAttribute="height" constant="96" id="Z9m-Ef-wsl"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="richard" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8gI-jE-7VX" userLabel="Username Label">
+                                <rect key="frame" x="132" y="106" width="266" height="21"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lOb-SN-pHC" userLabel="Posts Count Label">
+                                <rect key="frame" x="132" y="143" width="9" height="17"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" text="Posts" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Tc-Zv-IR6" userLabel="Posts Label">
+                                <rect key="frame" x="149" y="143" width="36" height="17"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Rsv-y6-D5P">
+                                <rect key="frame" x="0.0" y="221" width="414" height="592"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="2" minimumInteritemSpacing="2" id="idX-SH-Qo0">
+                                    <size key="itemSize" width="140" height="139"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="PostCollectionViewCell" id="9VP-mW-fpD" customClass="PostCollectionViewCell" customModule="parstagram" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="175" height="175"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="Lde-Q2-oCN">
+                                            <rect key="frame" x="0.0" y="0.0" width="175" height="175"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uy5-KS-TCU">
+                                                    <rect key="frame" x="0.0" y="0.0" width="175" height="175"/>
+                                                </imageView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="uy5-KS-TCU" firstAttribute="leading" secondItem="Lde-Q2-oCN" secondAttribute="leadingMargin" id="Isw-N1-ipK"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="uy5-KS-TCU" secondAttribute="bottom" id="eMm-vr-Wi8"/>
+                                                <constraint firstItem="uy5-KS-TCU" firstAttribute="top" secondItem="Lde-Q2-oCN" secondAttribute="topMargin" id="ejo-B8-ERp"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="uy5-KS-TCU" secondAttribute="trailing" id="get-5f-1dn"/>
+                                            </constraints>
+                                            <edgeInsets key="layoutMargins" top="0.0" left="0.0" bottom="0.0" right="0.0"/>
+                                        </collectionViewCellContentView>
+                                        <edgeInsets key="layoutMargins" top="0.0" left="0.0" bottom="0.0" right="0.0"/>
+                                        <size key="customSize" width="175" height="175"/>
+                                        <connections>
+                                            <outlet property="imageView" destination="uy5-KS-TCU" id="gWr-CB-6u5"/>
+                                        </connections>
+                                    </collectionViewCell>
+                                </cells>
+                            </collectionView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RrT-BA-udw" userLabel="Edit Profile Button">
+                                <rect key="frame" x="20" y="176" width="378" height="29"/>
+                                <color key="backgroundColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <state key="normal" title="Edit Profile">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="onEditProfile:" destination="VqO-2o-zOM" eventType="touchUpInside" id="RJE-sn-t8v"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="4Tc-Zv-IR6" firstAttribute="centerY" secondItem="lOb-SN-pHC" secondAttribute="centerY" id="1rY-yy-KI0"/>
+                            <constraint firstItem="RrT-BA-udw" firstAttribute="top" secondItem="aFk-p1-dPJ" secondAttribute="bottom" constant="16" id="5ow-gX-jbl"/>
+                            <constraint firstItem="qDK-yF-t4x" firstAttribute="trailing" secondItem="RrT-BA-udw" secondAttribute="trailing" constant="16" id="5vX-Yh-Buc"/>
+                            <constraint firstItem="qDK-yF-t4x" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="4Tc-Zv-IR6" secondAttribute="trailing" constant="16" id="7ZJ-Wg-rYJ"/>
+                            <constraint firstItem="Rsv-y6-D5P" firstAttribute="leading" secondItem="qDK-yF-t4x" secondAttribute="leading" id="DBQ-gy-6Nt"/>
+                            <constraint firstItem="lOb-SN-pHC" firstAttribute="leading" secondItem="8gI-jE-7VX" secondAttribute="leading" id="EGd-dh-lUt"/>
+                            <constraint firstItem="qDK-yF-t4x" firstAttribute="trailing" secondItem="Rsv-y6-D5P" secondAttribute="trailing" id="ErF-du-fUC"/>
+                            <constraint firstItem="qDK-yF-t4x" firstAttribute="trailing" secondItem="8gI-jE-7VX" secondAttribute="trailing" constant="16" id="JFG-eH-BsK"/>
+                            <constraint firstItem="lOb-SN-pHC" firstAttribute="leading" secondItem="aFk-p1-dPJ" secondAttribute="trailing" constant="16" id="Mr1-9n-608"/>
+                            <constraint firstItem="qDK-yF-t4x" firstAttribute="bottom" secondItem="Rsv-y6-D5P" secondAttribute="bottom" id="Tl3-Po-rm5"/>
+                            <constraint firstItem="aFk-p1-dPJ" firstAttribute="leading" secondItem="qDK-yF-t4x" secondAttribute="leading" constant="20" id="UEH-NN-wFw"/>
+                            <constraint firstItem="RrT-BA-udw" firstAttribute="leading" secondItem="aFk-p1-dPJ" secondAttribute="leading" id="ZNx-bv-Lgs"/>
+                            <constraint firstItem="lOb-SN-pHC" firstAttribute="bottom" secondItem="aFk-p1-dPJ" secondAttribute="bottom" id="gV6-G2-9u6"/>
+                            <constraint firstItem="aFk-p1-dPJ" firstAttribute="top" secondItem="qDK-yF-t4x" secondAttribute="top" constant="20" id="loj-MK-kc4"/>
+                            <constraint firstItem="4Tc-Zv-IR6" firstAttribute="leading" secondItem="lOb-SN-pHC" secondAttribute="trailing" constant="8" symbolic="YES" id="rUe-it-Smi"/>
+                            <constraint firstItem="lOb-SN-pHC" firstAttribute="top" secondItem="8gI-jE-7VX" secondAttribute="bottom" constant="16" id="zob-Vm-CQ1"/>
+                            <constraint firstItem="Rsv-y6-D5P" firstAttribute="top" secondItem="RrT-BA-udw" secondAttribute="bottom" constant="16" id="ztm-a9-8ih"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="qDK-yF-t4x"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="" image="profile_tab" id="qcQ-ZT-Irr"/>
+                    <connections>
+                        <outlet property="collectionView" destination="Rsv-y6-D5P" id="CNi-pP-eLS"/>
+                        <outlet property="editProfileButton" destination="RrT-BA-udw" id="CgB-lp-SyO"/>
+                        <outlet property="profileImageView" destination="aFk-p1-dPJ" id="BeH-vT-EIT"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RPq-AD-dMV" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1512" y="532"/>
+            <point key="canvasLocation" x="1511.5942028985507" y="531.69642857142856"/>
         </scene>
         <!--Parstagram-->
         <scene sceneID="wZV-aJ-jVK">
