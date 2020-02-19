@@ -17,6 +17,8 @@ class ProfileViewController: UIViewController, UICollectionViewDataSource, UICol
     
     // MARK: - Variables
     @IBOutlet weak var profileImageView: UIImageView!
+    @IBOutlet weak var usernameLabel: UILabel!
+    @IBOutlet weak var postsCountLabel: UILabel!
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var editProfileButton: UIButton!
     
@@ -38,6 +40,7 @@ class ProfileViewController: UIViewController, UICollectionViewDataSource, UICol
         super.viewWillAppear(animated)
         
         getPosts()
+        fillProfileInfo()
     }
     
     
@@ -60,12 +63,30 @@ class ProfileViewController: UIViewController, UICollectionViewDataSource, UICol
     func customizeProfileImage() {
         profileImageView.layer.masksToBounds = true
         profileImageView.layer.cornerRadius = profileImageView.bounds.width / 2
-        
-        // TODO: Get user profile picture if available
     }
     
     func customizeProfileButton() {
         editProfileButton.layer.cornerRadius = 5
+    }
+    
+    func fillProfileInfo() {
+        let user = PFUser.current()!
+        
+        // Set username
+        usernameLabel.text = user.username
+        
+        // Change posts count
+        postsCountLabel.text = String(posts.count)
+        
+        // Set profile picture
+        DataRequest.addAcceptableImageContentTypes(["image/jpeg", "image/jpg", "image/png", "application/octet-stream"])
+        let imageFire = user[UsersDB.profileImage.rawValue] as? PFFileObject
+        
+        if imageFire != nil {
+            let urlString = imageFire!.url!
+            let url       = URL(string: urlString)!
+            profileImageView.af_setImage(withURL: url)
+        }
     }
     
     
@@ -91,7 +112,6 @@ class ProfileViewController: UIViewController, UICollectionViewDataSource, UICol
     
     // MARK: - Action Functions
     @IBAction func onEditProfile(_ sender: Any) {
-        print("HERE")
         let picker = UIImagePickerController()
         picker.delegate = self
         picker.allowsEditing = true
@@ -132,14 +152,13 @@ class ProfileViewController: UIViewController, UICollectionViewDataSource, UICol
     func getPosts() {
         MBProgressHUD.showAdded(to: self.view, animated: true)
         
-        let query = PFQuery(className:PostsDB.name.rawValue)
+        let query = PFQuery(className: PostsDB.name.rawValue)
         query.addDescendingOrder(PostsDB.createdAt.rawValue)
-        query.includeKey(PostsDB.author.rawValue)
+        query.whereKey(PostsDB.author.rawValue, equalTo: PFUser.current()!)
         query.limit = numPosts
         
         query.findObjectsInBackground { (posts, error) in
             if posts != nil {
-                // If we reached the end of the posts, stop infinite scrolling
                 self.posts = posts!
                 self.collectionView.reloadData()
             }
@@ -150,10 +169,6 @@ class ProfileViewController: UIViewController, UICollectionViewDataSource, UICol
         }
 
         MBProgressHUD.hide(for: self.view, animated: true)
-    }
-    
-    func getProfileImage() {
-        
     }
     
     

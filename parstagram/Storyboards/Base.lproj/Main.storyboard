@@ -98,7 +98,7 @@
                                     <constraint firstAttribute="height" constant="96" id="Z9m-Ef-wsl"/>
                                 </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="richard" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8gI-jE-7VX" userLabel="Username Label">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="username" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8gI-jE-7VX" userLabel="Username Label">
                                 <rect key="frame" x="132" y="106" width="266" height="21"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                 <nil key="textColor"/>
@@ -191,7 +191,9 @@
                     <connections>
                         <outlet property="collectionView" destination="Rsv-y6-D5P" id="CNi-pP-eLS"/>
                         <outlet property="editProfileButton" destination="RrT-BA-udw" id="CgB-lp-SyO"/>
+                        <outlet property="postsCountLabel" destination="lOb-SN-pHC" id="RmX-iu-k0e"/>
                         <outlet property="profileImageView" destination="aFk-p1-dPJ" id="BeH-vT-EIT"/>
+                        <outlet property="usernameLabel" destination="8gI-jE-7VX" id="6YL-VP-IqO"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RPq-AD-dMV" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
