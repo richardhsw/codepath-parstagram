@@ -18,12 +18,17 @@ class CameraViewController: UIViewController, UITextFieldDelegate,  UIImagePicke
     @IBOutlet weak var photoImageView: UIImageView!
     @IBOutlet weak var captionField: UITextField!
     
+    let picker = UIImagePickerController()
+    
     
     // MARK: - Init Functions
     override func viewDidLoad() {
         super.viewDidLoad()
         
         captionField.delegate = self
+        
+        picker.delegate = self
+        picker.allowsEditing = true
     }
     
     
@@ -74,19 +79,15 @@ class CameraViewController: UIViewController, UITextFieldDelegate,  UIImagePicke
     }
     
     @IBAction func onCameraCapture(_ sender: Any) {
-        let picker = UIImagePickerController()
-        picker.delegate = self
-        picker.allowsEditing = true
-        
         if UIImagePickerController.isSourceTypeAvailable(.camera) {
-            picker.sourceType = .camera
-//            performSegue(withIdentifier: Segues.camera.rawValue, sender: nil)
+            presentPickerOptions()
+            
+            // TODO: implement custom camera
+            // performSegue(withIdentifier: Segues.camera.rawValue, sender: nil)
         }
         else {
-            picker.sourceType = .photoLibrary
+            openGallery()
         }
-        
-        present(picker, animated: true, completion: nil)
     }
     
     
@@ -101,6 +102,49 @@ class CameraViewController: UIViewController, UITextFieldDelegate,  UIImagePicke
         photoImageView.image = scaledImage
         
         dismiss(animated: true, completion: nil)
+    }
+    
+    // Below code obtained from https://stackoverflow.com/questions/41717115/how-to-make-uiimagepickercontroller-for-camera-and-photo-library-at-the-same-tim
+    func presentPickerOptions() {
+        let alert = UIAlertController(title: ImagePickerStrings.title.rawValue, message: nil, preferredStyle: .actionSheet)
+        
+        alert.addAction(UIAlertAction(title: ImagePickerStrings.camera.rawValue, style: .default, handler: { _ in
+            self.openCamera()
+        }))
+
+        alert.addAction(UIAlertAction(title: ImagePickerStrings.library.rawValue, style: .default, handler: { _ in
+            self.openGallery()
+        }))
+
+        alert.addAction(UIAlertAction.init(title: ImagePickerStrings.cancel.rawValue, style: .cancel, handler: nil))
+
+        /* TODO: If you want work actionsheet on ipad then you have to use popoverPresentationController to present the actionsheet, otherwise app will crash on iPad
+         
+        switch UIDevice.current.userInterfaceIdiom {
+        case .pad:
+            alert.popoverPresentationController?.sourceView = sender
+            alert.popoverPresentationController?.sourceRect = sender.bounds
+            alert.popoverPresentationController?.permittedArrowDirections = .up
+        default:
+            break
+        }
+        */
+
+        present(alert, animated: true, completion: nil)
+    }
+    
+    func openCamera() {
+        picker.sourceType = .camera
+        picker.allowsEditing = true
+        
+        present(picker, animated: true, completion: nil)
+    }
+    
+    func openGallery() {
+        picker.sourceType = .photoLibrary
+        picker.allowsEditing = true
+        
+        present(picker, animated: true, completion: nil)
     }
     
     

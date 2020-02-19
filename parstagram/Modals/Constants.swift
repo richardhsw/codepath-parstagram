@@ -33,6 +33,13 @@ enum HerokuServer : String {
     case serverURL = "https://rocky-shore-36635.herokuapp.com/parse"
 }
 
+enum ImagePickerStrings : String {
+    case title = "Choose an Image"
+    case camera = "Take Photo"
+    case library = "Choose from Library"
+    case cancel = "Cancel"
+}
+
 enum PostsDB : String {
     case name = "Posts"
     case author
