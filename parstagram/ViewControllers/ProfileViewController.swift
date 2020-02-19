@@ -75,9 +75,6 @@ class ProfileViewController: UIViewController, UICollectionViewDataSource, UICol
         // Set username
         usernameLabel.text = user.username
         
-        // Change posts count
-        postsCountLabel.text = String(posts.count)
-        
         // Set profile picture
         DataRequest.addAcceptableImageContentTypes(["image/jpeg", "image/jpg", "image/png", "application/octet-stream"])
         let imageFire = user[UsersDB.profileImage.rawValue] as? PFFileObject
@@ -161,6 +158,9 @@ class ProfileViewController: UIViewController, UICollectionViewDataSource, UICol
             if posts != nil {
                 self.posts = posts!
                 self.collectionView.reloadData()
+                
+                // Change posts count
+                self.postsCountLabel.text = String(self.posts.count)
             }
             else {
                 print("Error while retreiving posts")
