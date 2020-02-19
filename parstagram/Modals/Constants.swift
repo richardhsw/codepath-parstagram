@@ -8,6 +8,10 @@
 
 import Foundation
 
+enum Assets : String {
+    case defaultProfile = "default_profile"
+}
+
 enum Errors : String {
     case generalTitle = "Error"
     case emptyUPMessage = "Username and password cannot be empty"

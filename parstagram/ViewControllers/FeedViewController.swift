@@ -87,6 +87,9 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
             let url       = URL(string: urlString)!
             cell.profileImageView.af_setImage(withURL: url)
         }
+        else {
+            cell.profileImageView.image = UIImage(named: Assets.defaultProfile.rawValue)
+        }
         
         // Get image caption
         cell.captionLabel.text = post[PostsDB.caption.rawValue] as? String
