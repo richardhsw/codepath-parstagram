@@ -24,6 +24,8 @@
 		D1B186DF23FB35F40033C6D0 /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1B186DE23FB35F30033C6D0 /* CameraViewController.swift */; };
 		D1B186E123FB56AA0033C6D0 /* PostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1B186E023FB56AA0033C6D0 /* PostTableViewCell.swift */; };
 		D1C8F4B123FCA2C200BBB136 /* CaptureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1C8F4B023FCA2C200BBB136 /* CaptureViewController.swift */; };
+		D1C8F4B523FCAFBB00BBB136 /* PostTableViewHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1C8F4B423FCAFBB00BBB136 /* PostTableViewHeader.swift */; };
+		D1C8F4BC23FCB37D00BBB136 /* PostTableViewHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = D1C8F4BB23FCB37D00BBB136 /* PostTableViewHeader.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -71,6 +73,8 @@
 		D1B186DE23FB35F30033C6D0 /* CameraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
 		D1B186E023FB56AA0033C6D0 /* PostTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTableViewCell.swift; sourceTree = "<group>"; };
 		D1C8F4B023FCA2C200BBB136 /* CaptureViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaptureViewController.swift; sourceTree = "<group>"; };
+		D1C8F4B423FCAFBB00BBB136 /* PostTableViewHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTableViewHeader.swift; sourceTree = "<group>"; };
+		D1C8F4BB23FCB37D00BBB136 /* PostTableViewHeader.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PostTableViewHeader.xib; sourceTree = "<group>"; };
 		D2C889F8927A49108F09B645 /* libPods-parstagram-parstagramUITests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-parstagram-parstagramUITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E36F752B1722E49A5261E5C5 /* Pods-parstagram-parstagramUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-parstagram-parstagramUITests.debug.xcconfig"; path = "Target Support Files/Pods-parstagram-parstagramUITests/Pods-parstagram-parstagramUITests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -155,6 +159,7 @@
 			children = (
 				D148797623F8C47F00570510 /* LaunchImageView.swift */,
 				D1B186E023FB56AA0033C6D0 /* PostTableViewCell.swift */,
+				D1C8F4B423FCAFBB00BBB136 /* PostTableViewHeader.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -189,6 +194,7 @@
 				D148796823F8B43300570510 /* Storyboards */,
 				D148797523F8C45500570510 /* Views */,
 				D148796A23F8B44D00570510 /* ViewControllers */,
+				D1C8F4B623FCB1D500BBB136 /* xib */,
 				D18E560C23F8AAE10005F86A /* Assets.xcassets */,
 				D18E561123F8AAE10005F86A /* Info.plist */,
 			);
@@ -211,6 +217,14 @@
 				D18E562723F8AAE10005F86A /* Info.plist */,
 			);
 			path = parstagramUITests;
+			sourceTree = "<group>";
+		};
+		D1C8F4B623FCB1D500BBB136 /* xib */ = {
+			isa = PBXGroup;
+			children = (
+				D1C8F4BB23FCB37D00BBB136 /* PostTableViewHeader.xib */,
+			);
+			path = xib;
 			sourceTree = "<group>";
 		};
 		D2BE5D369176D99E9ADDC53A /* Pods */ = {
@@ -337,6 +351,7 @@
 			files = (
 				D18E561023F8AAE10005F86A /* LaunchScreen.storyboard in Resources */,
 				D18E560D23F8AAE10005F86A /* Assets.xcassets in Resources */,
+				D1C8F4BC23FCB37D00BBB136 /* PostTableViewHeader.xib in Resources */,
 				D18E560B23F8AADA0005F86A /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -469,6 +484,7 @@
 				D18E560423F8AADA0005F86A /* AppDelegate.swift in Sources */,
 				D148797223F8B7DC00570510 /* FeedViewController.swift in Sources */,
 				D1B186E123FB56AA0033C6D0 /* PostTableViewCell.swift in Sources */,
+				D1C8F4B523FCAFBB00BBB136 /* PostTableViewHeader.swift in Sources */,
 				D1C8F4B123FCA2C200BBB136 /* CaptureViewController.swift in Sources */,
 				D148797723F8C47F00570510 /* LaunchImageView.swift in Sources */,
 				D1B186DF23FB35F40033C6D0 /* CameraViewController.swift in Sources */,

@@ -39,6 +39,7 @@ enum Segues : String {
 
 enum TableViewIdentifiers : String {
     case post = "PostTableViewCell"
+    case header = "PostTableViewHeader"
 }
 
 enum UserDefaultsKeys : String {

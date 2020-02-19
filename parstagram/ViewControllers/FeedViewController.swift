@@ -33,6 +33,9 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
         tableView.delegate   = self
         tableView.allowsSelection = false
         
+        let headNib = UINib.init(nibName: TableViewIdentifiers.header.rawValue, bundle: Bundle.main)
+        tableView.register(headNib, forHeaderFooterViewReuseIdentifier: TableViewIdentifiers.header.rawValue)
+        
         // Set up refresh control
         refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: #selector(onRefresh), for: .valueChanged)
@@ -47,6 +50,16 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     
     // MARK: - TableView FUnctions
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 100
+    }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: TableViewIdentifiers.header.rawValue) as! PostTableViewHeader
+        header.usernameLabel.text = "richard"
+        return header
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return posts.count
     }
