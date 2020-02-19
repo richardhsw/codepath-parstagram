@@ -78,6 +78,16 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
         cell.usernameLabel.text = user.username
         cell.cptnUsernameLabel.text = user.username
         
+        // Get profile picture
+        DataRequest.addAcceptableImageContentTypes(["image/jpeg", "image/jpg", "image/png", "application/octet-stream"])
+        let profileImageFire = user[UsersDB.profileImage.rawValue] as? PFFileObject
+        
+        if profileImageFire != nil {
+            let urlString = profileImageFire!.url!
+            let url       = URL(string: urlString)!
+            cell.profileImageView.af_setImage(withURL: url)
+        }
+        
         // Get image caption
         cell.captionLabel.text = post[PostsDB.caption.rawValue] as? String
         
@@ -135,11 +145,12 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
                     self.reachedDataEnd = true
                 }
                 else {
-                    self.posts = posts!
-                    self.tableView.reloadData()
                     self.isLoadingData = false
                     self.reachedDataEnd = false
                 }
+                
+                self.posts = posts!
+                self.tableView.reloadData()
             }
             else {
                 print("Error while retreiving posts")
