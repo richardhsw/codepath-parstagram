@@ -57,7 +57,8 @@ class CameraViewController: UIViewController, UITextFieldDelegate,  UIImagePicke
             
             // save image
             let imageData = photoImageView.image!.pngData()
-            let file      = PFFileObject(data: imageData!)
+            let file      = PFFileObject(name: "image.png", data: imageData!)
+//            let file      = PFFileObject(data: imageData!)
             post[PostsDB.image.rawValue] = file
             
             post.saveInBackground { (success, error) in
@@ -97,7 +98,7 @@ class CameraViewController: UIViewController, UITextFieldDelegate,  UIImagePicke
         
         // Resize image
         let size = CGSize(width: 300, height: 300)
-        let scaledImage = image.af_imageScaled(to: size)
+        let scaledImage = image.af.imageAspectScaled(toFill: size)
         
         photoImageView.image = scaledImage
         

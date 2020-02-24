@@ -1,20 +1,23 @@
 PODS:
-  - Alamofire (4.9.1)
-  - AlamofireImage (3.6.0):
-    - Alamofire (~> 4.9)
+  - Alamofire (5.0.2)
+  - AlamofireImage (4.0.1):
+    - Alamofire (< 6.0.0, >= 5.0.2)
   - Bolts/Tasks (1.9.0)
   - CameraManager (4.4.0)
   - MBProgressHUD (1.2.0)
+  - MessageInputBar (0.4.1):
+    - MessageInputBar/Core (= 0.4.1)
+  - MessageInputBar/Core (0.4.1)
   - Parse (1.17.3):
     - Parse/Core (= 1.17.3)
   - Parse/Core (1.17.3):
     - Bolts/Tasks (~> 1.9)
 
 DEPENDENCIES:
-  - Alamofire
   - AlamofireImage
   - CameraManager (~> 4.4)
   - MBProgressHUD
+  - MessageInputBar
   - Parse
 
 SPEC REPOS:
@@ -24,16 +27,18 @@ SPEC REPOS:
     - Bolts
     - CameraManager
     - MBProgressHUD
+    - MessageInputBar
     - Parse
 
 SPEC CHECKSUMS:
-  Alamofire: 85e8a02c69d6020a0d734f6054870d7ecb75cf18
-  AlamofireImage: be9963c6582d68b39e89191f64c82a7d7bf40fdd
+  Alamofire: 3ba7a4db18b4f62c4a1c0e1cb39d7f3d52e10ada
+  AlamofireImage: a8a5289046ac46b4d0183bcf73ce12ce30564cb7
   Bolts: ac6567323eac61e203f6a9763667d0f711be34c8
   CameraManager: 583710502c42178d12ef046d9d4f7893feff8354
   MBProgressHUD: 3ee5efcc380f6a79a7cc9b363dd669c5e1ae7406
+  MessageInputBar: e81c7535347f1f7b923de7080409a535a004b6e4
   Parse: c1ad2a04d2cab2b54b6fb7da05f741abf2cf57d1
 
-PODFILE CHECKSUM: 42168c5183ed3879d0000a3a98c1c116ba488562
+PODFILE CHECKSUM: 9cba44013bed3c2f50c8dcb0e1b5e39689d30d3c
 
 COCOAPODS: 1.8.4

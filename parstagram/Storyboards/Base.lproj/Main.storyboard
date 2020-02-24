@@ -271,7 +271,7 @@
                                             <constraints>
                                                 <constraint firstItem="DDQ-kU-GfD" firstAttribute="leading" secondItem="C0r-ji-Xqm" secondAttribute="trailing" constant="10" id="5Hp-Gj-uft"/>
                                                 <constraint firstAttribute="trailing" secondItem="kFT-kS-hPD" secondAttribute="trailing" constant="20" symbolic="YES" id="AI5-AV-sFx"/>
-                                                <constraint firstItem="BzZ-ls-OPG" firstAttribute="top" relation="greaterThanOrEqual" secondItem="QVJ-e3-3vo" secondAttribute="bottom" constant="8" id="Cid-oM-mN4"/>
+                                                <constraint firstItem="BzZ-ls-OPG" firstAttribute="top" relation="greaterThanOrEqual" secondItem="QVJ-e3-3vo" secondAttribute="bottom" constant="5" id="Cid-oM-mN4"/>
                                                 <constraint firstItem="QVJ-e3-3vo" firstAttribute="top" secondItem="kFT-kS-hPD" secondAttribute="bottom" constant="16" id="Ery-5b-J8J"/>
                                                 <constraint firstItem="C0r-ji-Xqm" firstAttribute="leading" secondItem="Cdx-gJ-Cvs" secondAttribute="leadingMargin" id="Fdl-mc-gcg"/>
                                                 <constraint firstItem="QVJ-e3-3vo" firstAttribute="leading" secondItem="dXc-vu-UDm" secondAttribute="trailing" constant="8" id="OGB-a7-cnd"/>
@@ -299,7 +299,7 @@
                                             <outlet property="usernameLabel" destination="DDQ-kU-GfD" id="oka-Ve-3hZ"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="CommentTableViewCell" id="7BP-rW-OtD" customClass="CommentTableViewCell" customModule="parstagram" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="CommentTableViewCell" id="7BP-rW-OtD" customClass="CommentTableViewCell" customModule="parstagram" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="533" width="414" height="33.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="7BP-rW-OtD" id="exf-Tc-dPW">
@@ -334,6 +334,28 @@
                                             <outlet property="commentLabel" destination="mOD-w5-o3o" id="Bkp-Vq-P7Z"/>
                                             <outlet property="usernameLabel" destination="Tis-XU-Kw5" id="ZaM-p0-Lny"/>
                                         </connections>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="AddCommentCell" id="7Of-v6-mxe">
+                                        <rect key="frame" x="0.0" y="566.5" width="414" height="33.5"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="7Of-v6-mxe" id="oTj-lz-OEi">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="33.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add a new comment..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kGI-AS-4B0">
+                                                    <rect key="frame" x="40" y="8" width="144" height="17.5"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="kGI-AS-4B0" firstAttribute="leading" secondItem="oTj-lz-OEi" secondAttribute="leading" constant="40" id="Wjp-Bk-z9G"/>
+                                                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="kGI-AS-4B0" secondAttribute="trailing" constant="8" id="bd0-Mg-Og1"/>
+                                                <constraint firstAttribute="bottom" secondItem="kGI-AS-4B0" secondAttribute="bottom" constant="8" id="ikT-e4-LyN"/>
+                                                <constraint firstItem="kGI-AS-4B0" firstAttribute="top" secondItem="oTj-lz-OEi" secondAttribute="top" constant="8" id="uZ2-gO-Aes"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>

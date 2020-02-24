@@ -6,32 +6,43 @@
 //  Copyright © 2020 Richard Hsu. All rights reserved.
 //
 
-import Alamofire
 import AlamofireImage
 import MBProgressHUD
+import MessageInputBar
 import Parse
 import UIKit
 
-class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class FeedViewController: UIViewController, MessageInputBarDelegate, UITableViewDataSource, UITableViewDelegate {
     
     // MARK: - Variables
     @IBOutlet weak var tableView: UITableView!
     
     let startingQueries  = 20
     let incrementQueries = 10
+    let commentBar = MessageInputBar()
+    
     var posts = [PFObject]()
     var refreshControl : UIRefreshControl!
-    var isLoadingData : Bool = false
+    var isLoadingData  : Bool = false
     var reachedDataEnd : Bool = false
+    var showsCommentBar = false
+    var selectedPost   : PFObject!
     
     
     // MARK: - Init Function
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // Customize commentBar default messages
+        commentBar.inputTextView.placeholder = MessageInputBarStrings.addCommentMessage.rawValue
+        commentBar.sendButton.title = MessageInputBarStrings.addCommentButton.rawValue
+        commentBar.delegate = self
+        
         // Set up tableview
         tableView.dataSource = self
         tableView.delegate   = self
+        
+        tableView.keyboardDismissMode = .interactive
         
         /***----- Unused Header Code
         let headNib = UINib.init(nibName: TableViewIdentifiers.header.rawValue, bundle: Bundle.main)
@@ -42,6 +53,10 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
         refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: #selector(onRefresh), for: .valueChanged)
         tableView.insertSubview(refreshControl, at: 0)
+        
+        // Set up notification observer
+        let center = NotificationCenter.default
+        center.addObserver(self, selector: #selector(keyboardWillBeHidden(note:)), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -52,7 +67,7 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     
     // MARK: - TableView FUnctions
-    /***----- Unused Header Code -----
+    /** ----- Unused Header Code -----
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 100
     }
@@ -62,13 +77,13 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
         header.usernameLabel.text = "richard"
         return header
     }
-    ***/
+    **/
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         let post = posts[section]
         let comments = (post[PostsDB.comments.rawValue] as? [PFObject]) ?? []
         
-        return comments.count + 1
+        return comments.count + 2
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -77,17 +92,22 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let post = posts[indexPath.section]
+        let comments = (post[PostsDB.comments.rawValue] as? [PFObject]) ?? []
         
         // Cell is a post cell if it's the first cell in the section
         if (indexPath.row == 0) {
             return populatePostCell(with: post)
         }
-        // Otherwise it's a comment cell
-        else {
-            let comments = (post[PostsDB.comments.rawValue] as? [PFObject]) ?? []
+        // Cells that are comment cells
+        else if (indexPath.row <= comments.count) {
             let comment = comments[indexPath.row - 1]
             
             return populateCommentsCell(with: comment)
+        }
+        else {
+            let cell = tableView.dequeueReusableCell(withIdentifier: ReuseIdentifiers.addCommentTableCell.rawValue)!
+            
+            return cell
         }
     }
     
@@ -100,22 +120,15 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let post = posts[indexPath.row]
+        let post = posts[indexPath.section]
+        let comments = (post[PostsDB.comments.rawValue] as? [PFObject]) ?? []
         
-        let comment = PFObject(className: CommentsDB.name.rawValue)
-        comment[CommentsDB.text.rawValue]   = "This is a random comment"
-        comment[CommentsDB.post.rawValue]   = post
-        comment[CommentsDB.author.rawValue] = PFUser.current()!
-        
-        post.add(comment, forKey: PostsDB.comments.rawValue)
-        
-        post.saveInBackground { (success, error) in
-            if success {
-                print("Comment saved successfully")
-            }
-            else {
-                print("Error saving comment")
-            }
+        if (indexPath.row == comments.count + 1) {
+            showsCommentBar = true
+            becomeFirstResponder()
+            commentBar.inputTextView.becomeFirstResponder()
+            
+            selectedPost = post
         }
     }
     
@@ -130,13 +143,12 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
         cell.cptnUsernameLabel.text = user.username
         
         // Get profile picture
-        DataRequest.addAcceptableImageContentTypes(["image/jpeg", "image/jpg", "image/png", "application/octet-stream"])
         let profileImageFire = user[UsersDB.profileImage.rawValue] as? PFFileObject
         
         if profileImageFire != nil {
             let urlString = profileImageFire!.url!
             let url       = URL(string: urlString)!
-            cell.profileImageView.af_setImage(withURL: url)
+            cell.profileImageView.af.setImage(withURL: url)
         }
         else {
             cell.profileImageView.image = UIImage(named: Assets.defaultProfile.rawValue)
@@ -146,11 +158,10 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
         cell.captionLabel.text = post[PostsDB.caption.rawValue] as? String
         
         // Get image
-        DataRequest.addAcceptableImageContentTypes(["image/jpeg", "image/jpg", "image/png", "application/octet-stream"])
         let imageFire = post[PostsDB.image.rawValue] as! PFFileObject
         let urlString = imageFire.url!
         let url       = URL(string: urlString)!
-        cell.photoImageView.af_setImage(withURL: url)
+        cell.photoImageView.af.setImage(withURL: url)
         
         // Get time ago
         cell.timestampLabel.text = post.createdAt?.getElapsedInterval()
@@ -173,6 +184,51 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
         queryPosts(for: startingQueries)
         
         refreshControl.endRefreshing()
+    }
+    
+    
+    // MARK: - MessageInputBar Functions
+    func messageInputBar(_ inputBar: MessageInputBar, didPressSendButtonWith text: String) {
+        // Create the comment
+        let comment = PFObject(className: CommentsDB.name.rawValue)
+        comment[CommentsDB.text.rawValue]   = text
+        comment[CommentsDB.post.rawValue]   = selectedPost
+        comment[CommentsDB.author.rawValue] = PFUser.current()!
+
+        selectedPost.add(comment, forKey: PostsDB.comments.rawValue)
+
+        selectedPost.saveInBackground { (success, error) in
+            if success {
+                print("Comment saved successfully")
+            }
+            else {
+                print("Error saving comment")
+            }
+        }
+        
+        tableView.reloadData()
+        
+        // Clear and dismiss the input bar
+        hideInputBar()
+        commentBar.inputTextView.resignFirstResponder()
+    }
+    
+    override var inputAccessoryView: UIView? {
+        return commentBar
+    }
+    
+    override var canBecomeFirstResponder: Bool {
+        return showsCommentBar
+    }
+    
+    @objc func keyboardWillBeHidden(note: Notification) {
+        hideInputBar()
+    }
+    
+    func hideInputBar() {
+        commentBar.inputTextView.text = nil
+        showsCommentBar = false
+        becomeFirstResponder()
     }
     
     
@@ -200,8 +256,10 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
         let commentsString = PostsDB.comments.rawValue
         let commentsAuthor = commentsString + "." + CommentsDB.author.rawValue
         query.includeKeys([PostsDB.author.rawValue, commentsString, commentsAuthor])
+        
         query.limit = numPosts
         
+        // Post the query to Parse
         query.findObjectsInBackground { (posts, error) in
             if posts != nil {
                 // If we reached the end of the posts, stop infinite scrolling

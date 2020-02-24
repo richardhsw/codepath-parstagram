@@ -39,6 +39,11 @@ enum FormatStrings : String {
     case date = "dd MM yyyy at HH:mm:ss Z"
 }
 
+enum MessageInputBarStrings : String {
+    case addCommentMessage = "Add a new comment..."
+    case addCommentButton = "Post"
+}
+
 enum HerokuServer : String {
     case appID     = "parstagram"
     case serverURL = "https://rocky-shore-36635.herokuapp.com/parse"
@@ -72,6 +77,7 @@ enum Segues : String {
 }
 
 enum ReuseIdentifiers : String {
+    case addCommentTableCell = "AddCommentCell"
     case commentTableCell = "CommentTableViewCell"
     case postTableCell = "PostTableViewCell"
     case postTableHeader = "PostTableViewHeader"

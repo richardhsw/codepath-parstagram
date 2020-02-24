@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "8BB91AB80BFCF849745808EDF709B66D"
-               BuildableName = "libCameraManager.a"
+               BuildableName = "CameraManager.framework"
                BlueprintName = "CameraManager"
                ReferencedContainer = "container:Pods.xcodeproj">
             </BuildableReference>

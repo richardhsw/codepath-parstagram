@@ -6,7 +6,6 @@
 //  Copyright © 2020 Richard Hsu. All rights reserved.
 //
 
-import Alamofire
 import AlamofireImage
 import Parse
 import MBProgressHUD
@@ -76,13 +75,12 @@ class ProfileViewController: UIViewController, UICollectionViewDataSource, UICol
         usernameLabel.text = user.username
         
         // Set profile picture
-        DataRequest.addAcceptableImageContentTypes(["image/jpeg", "image/jpg", "image/png", "application/octet-stream"])
         let imageFire = user[UsersDB.profileImage.rawValue] as? PFFileObject
         
         if imageFire != nil {
             let urlString = imageFire!.url!
             let url       = URL(string: urlString)!
-            profileImageView.af_setImage(withURL: url)
+            profileImageView.af.setImage(withURL: url)
         }
     }
     
@@ -97,11 +95,10 @@ class ProfileViewController: UIViewController, UICollectionViewDataSource, UICol
         
         let post = posts[indexPath.item]
         
-        DataRequest.addAcceptableImageContentTypes(["image/jpeg", "image/jpg", "image/png", "application/octet-stream"])
         let imageFire = post[PostsDB.image.rawValue] as! PFFileObject
         let urlString = imageFire.url!
         let url       = URL(string: urlString)!
-        cell.imageView.af_setImage(withURL: url)
+        cell.imageView.af.setImage(withURL: url)
         
         return cell
     }
@@ -124,7 +121,7 @@ class ProfileViewController: UIViewController, UICollectionViewDataSource, UICol
         
         // Resize image
         let size        = CGSize(width: 300, height: 300)
-        let scaledImage = image.af_imageScaled(to: size)
+        let scaledImage = image.af.imageScaled(to: size)
         let imageData   = scaledImage.pngData()
         let file        = PFFileObject(data: imageData!)
         
