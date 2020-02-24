@@ -124,9 +124,12 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     // MARK: - Action Functions
     @IBAction func onLogout(_ sender: Any) {
-        UserDefaults.standard.set(false, forKey: UserDefaultsKeys.isLoggedIn.rawValue)
         PFUser.logOut()
-        dismiss(animated: true, completion: nil)
+        
+        let main = UIStoryboard(name: StoryboardIDs.mainStoryboard.rawValue, bundle: nil)
+        let loginViewController = main.instantiateViewController(identifier: StoryboardIDs.loginView.rawValue)
+        
+        view.window?.rootViewController = loginViewController
     }
     
     

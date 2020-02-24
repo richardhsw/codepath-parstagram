@@ -16,10 +16,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         if PFUser.current() != nil {
-            let main = UIStoryboard(name: StoryboardIDs.main.rawValue, bundle: nil)
-            let tabNavContr = main.instantiateViewController(identifier: StoryboardIDs.loggedIn.rawValue)
+            let main = UIStoryboard(name: StoryboardIDs.mainStoryboard.rawValue, bundle: nil)
+            let tabNavController = main.instantiateViewController(identifier: StoryboardIDs.feedView.rawValue)
             
-            window?.rootViewController = tabNavContr
+            window?.rootViewController = tabNavController
         }
         
         guard let _ = (scene as? UIWindowScene) else { return }

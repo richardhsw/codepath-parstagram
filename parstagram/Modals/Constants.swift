@@ -53,8 +53,9 @@ enum PostsDB : String {
 }
 
 enum StoryboardIDs : String {
-    case main = "Main"
-    case loggedIn = "LoggedInTabController"
+    case mainStoryboard = "Main"
+    case feedView = "LoggedInTabController"
+    case loginView = "LoginViewController"
 }
 
 enum Segues : String {
