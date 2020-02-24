@@ -12,6 +12,13 @@ enum Assets : String {
     case defaultProfile = "default_profile"
 }
 
+enum CommentsDB : String {
+    case name = "Comments"
+    case text
+    case post
+    case author
+}
+
 enum Errors : String {
     case generalTitle = "Error"
     case emptyUPMessage = "Username and password cannot be empty"

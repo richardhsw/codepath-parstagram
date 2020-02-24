@@ -32,7 +32,7 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
         // Set up tableview
         tableView.dataSource = self
         tableView.delegate   = self
-        tableView.allowsSelection = false
+//        tableView.allowsSelection = false
         
         /***----- Unused Header Code
         let headNib = UINib.init(nibName: TableViewIdentifiers.header.rawValue, bundle: Bundle.main)
@@ -112,6 +112,26 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
         
         if canLoadMore {
             queryPosts(for: posts.count + incrementQueries)
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let post = posts[indexPath.row]
+        
+        let comment = PFObject(className: CommentsDB.name.rawValue)
+        comment[CommentsDB.text.rawValue]   = "This is a random comment"
+        comment[CommentsDB.post.rawValue]   = post
+        comment[CommentsDB.author.rawValue] = PFUser.current()!
+        
+        post.add(comment, forKey: "comments")
+        
+        post.saveInBackground { (success, error) in
+            if success {
+                print("Comment saved successfully")
+            }
+            else {
+                print("Error saving comment")
+            }
         }
     }
     
