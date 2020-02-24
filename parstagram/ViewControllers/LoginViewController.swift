@@ -25,15 +25,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         passwordField.delegate = self
         
         customizeButton()
-        
-        let defaults = UserDefaults.standard
-        let isLoggedIn = defaults.bool(forKey: UserDefaultsKeys.isLoggedIn.rawValue)
-        if (isLoggedIn) {
-            let username = defaults.string(forKey: UserDefaultsKeys.username.rawValue)
-            let password = defaults.string(forKey: UserDefaultsKeys.password.rawValue)
-            
-            login(with: username!, and: password!)
-        }
     }
     
     
@@ -136,11 +127,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     func login(with username: String, and password: String) {
         PFUser.logInWithUsername(inBackground: username, password: password) { (user, error) in
             if user != nil {
-                let defaults = UserDefaults.standard
-                defaults.set(true, forKey: UserDefaultsKeys.isLoggedIn.rawValue)
-                defaults.set(username, forKey: UserDefaultsKeys.username.rawValue)
-                defaults.set(password, forKey: UserDefaultsKeys.password.rawValue)
-                
                 self.performSegue(withIdentifier: Segues.login.rawValue, sender: nil)
             }
             else {
