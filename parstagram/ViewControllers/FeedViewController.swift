@@ -32,7 +32,6 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
         // Set up tableview
         tableView.dataSource = self
         tableView.delegate   = self
-//        tableView.allowsSelection = false
         
         /***----- Unused Header Code
         let headNib = UINib.init(nibName: TableViewIdentifiers.header.rawValue, bundle: Bundle.main)
@@ -66,12 +65,64 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
     ***/
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        let post = posts[section]
+        let comments = (post[PostsDB.comments.rawValue] as? [PFObject]) ?? []
+        
+        return comments.count + 1
+    }
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
         return posts.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: ReuseIdentifiers.feedTable.rawValue) as! PostTableViewCell
+        let post = posts[indexPath.section]
+        
+        // Cell is a post cell if it's the first cell in the section
+        if (indexPath.row == 0) {
+            return populatePostCell(with: post)
+        }
+        // Otherwise it's a comment cell
+        else {
+            let comments = (post[PostsDB.comments.rawValue] as? [PFObject]) ?? []
+            let comment = comments[indexPath.row - 1]
+            
+            return populateCommentsCell(with: comment)
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        let canLoadMore = !isLoadingData && !reachedDataEnd && (indexPath.row + 1 == posts.count)
+        
+        if canLoadMore {
+            queryPosts(for: posts.count + incrementQueries)
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let post = posts[indexPath.row]
+        
+        let comment = PFObject(className: CommentsDB.name.rawValue)
+        comment[CommentsDB.text.rawValue]   = "This is a random comment"
+        comment[CommentsDB.post.rawValue]   = post
+        comment[CommentsDB.author.rawValue] = PFUser.current()!
+        
+        post.add(comment, forKey: PostsDB.comments.rawValue)
+        
+        post.saveInBackground { (success, error) in
+            if success {
+                print("Comment saved successfully")
+            }
+            else {
+                print("Error saving comment")
+            }
+        }
+    }
+    
+    
+    // MARK: - TableView Helper Functions
+    func populatePostCell(with post: PFObject) -> PostTableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: ReuseIdentifiers.postTableCell.rawValue) as! PostTableViewCell
         
         // Get username
         let user = post[PostsDB.author.rawValue] as! PFUser
@@ -107,32 +158,15 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
         return cell
     }
     
-    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        let canLoadMore = !isLoadingData && !reachedDataEnd && (indexPath.row + 1 == posts.count)
+    func populateCommentsCell(with comment: PFObject) -> CommentTableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: ReuseIdentifiers.commentTableCell.rawValue) as! CommentTableViewCell
         
-        if canLoadMore {
-            queryPosts(for: posts.count + incrementQueries)
-        }
-    }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let post = posts[indexPath.row]
+        let user = comment[CommentsDB.author.rawValue] as! PFUser
+        cell.usernameLabel.text = user.username
         
-        let comment = PFObject(className: CommentsDB.name.rawValue)
-        comment[CommentsDB.text.rawValue]   = "This is a random comment"
-        comment[CommentsDB.post.rawValue]   = post
-        comment[CommentsDB.author.rawValue] = PFUser.current()!
+        cell.commentLabel.text = comment[CommentsDB.text.rawValue] as? String
         
-        post.add(comment, forKey: "comments")
-        
-        post.saveInBackground { (success, error) in
-            if success {
-                print("Comment saved successfully")
-            }
-            else {
-                print("Error saving comment")
-            }
-        }
+        return cell
     }
     
     @objc func onRefresh() {
@@ -161,7 +195,11 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
         
         let query = PFQuery(className:PostsDB.name.rawValue)
         query.addDescendingOrder(PostsDB.createdAt.rawValue)
-        query.includeKey(PostsDB.author.rawValue)
+        
+        // Keys to include
+        let commentsString = PostsDB.comments.rawValue
+        let commentsAuthor = commentsString + "." + CommentsDB.author.rawValue
+        query.includeKeys([PostsDB.author.rawValue, commentsString, commentsAuthor])
         query.limit = numPosts
         
         query.findObjectsInBackground { (posts, error) in

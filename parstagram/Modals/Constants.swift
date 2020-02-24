@@ -55,8 +55,9 @@ enum PostsDB : String {
     case name = "Posts"
     case author
     case caption
-    case image
+    case comments
     case createdAt
+    case image
 }
 
 enum StoryboardIDs : String {
@@ -71,9 +72,10 @@ enum Segues : String {
 }
 
 enum ReuseIdentifiers : String {
-    case feedTable = "PostTableViewCell"
-    case feedHeader = "PostTableViewHeader"
-    case profileCollection = "PostCollectionViewCell"
+    case commentTableCell = "CommentTableViewCell"
+    case postTableCell = "PostTableViewCell"
+    case postTableHeader = "PostTableViewHeader"
+    case profileCollectionCell = "PostCollectionViewCell"
 }
 
 enum UsersDB : String {
