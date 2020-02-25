@@ -16,7 +16,7 @@ The following **required** functionality is completed:
 The following **bonus** features are implemented:
 
 - [x] User can add a profile picture. (2pts)
-- [] Profile pictures are shown for posts and comments. (2pts)
+- [x] Profile pictures are shown for posts and comments. (2pts)
 
 ## Video Walkthrough
 
