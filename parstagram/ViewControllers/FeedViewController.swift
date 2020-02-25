@@ -65,6 +65,14 @@ class FeedViewController: UIViewController, MessageInputBarDelegate, UITableView
         queryPosts(for: startingQueries)
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if (segue.identifier == Segues.profile.rawValue) {
+            if let vc = segue.destination as? OthersProfileViewController {
+                vc.user = selectedPost[PostsDB.author.rawValue] as? PFUser
+            }
+        }
+    }
+    
     
     // MARK: - TableView FUnctions
     /** ----- Unused Header Code -----
@@ -123,11 +131,12 @@ class FeedViewController: UIViewController, MessageInputBarDelegate, UITableView
         let post = posts[indexPath.section]
         let comments = (post[PostsDB.comments.rawValue] as? [PFObject]) ?? []
         
+        // If the user selected "Add new comment"
         if (indexPath.row == comments.count + 1) {
             showsCommentBar = true
             becomeFirstResponder()
             commentBar.inputTextView.becomeFirstResponder()
-            
+        
             selectedPost = post
         }
     }
@@ -240,6 +249,11 @@ class FeedViewController: UIViewController, MessageInputBarDelegate, UITableView
         let loginViewController = main.instantiateViewController(identifier: StoryboardIDs.loginView.rawValue)
         
         view.window?.rootViewController = loginViewController
+    }
+    
+    // TODO: complete user profile
+    @IBAction func onUserProfile(_ sender: Any) {
+        // performSegue(withIdentifier: Segues.profile.rawValue, sender: sender)
     }
     
     

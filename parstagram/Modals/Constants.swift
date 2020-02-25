@@ -74,6 +74,7 @@ enum StoryboardIDs : String {
 enum Segues : String {
     case login = "loginSegue"
     case camera = "showCamera"
+    case profile = "showProfileSegue"
 }
 
 enum ReuseIdentifiers : String {
